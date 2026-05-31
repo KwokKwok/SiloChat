@@ -31,6 +31,12 @@
 🔧 模型参数调整<br>
 💬 优化的输入体验<br>
 
+## 安全与维护
+
+Silo 是一个纯前端、多模型、多部署形态的开源项目，涉及用户 API 密钥、本地浏览器存储、自定义模型 Provider、浏览器扩展、PWA 与 Docker 自托管等安全敏感场景。欢迎通过 [Issues](https://github.com/KwokKwok/Silo/issues) 反馈 Bug、Provider 兼容性问题和非敏感安全审查建议。
+
+如果你发现可能暴露用户密钥、浏览器数据或 Provider 请求行为的安全问题，请先阅读 [SECURITY.md](SECURITY.md)，不要在公开 Issue 中粘贴密钥、Token、私有 Prompt 或可直接利用的细节。贡献代码前可参考 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
 <!-- ![dark](./docs/dark.png)
 ![light](./docs/light.png)
 <img src="./docs/mobile.jpg" alt="mobile" width="250"> -->

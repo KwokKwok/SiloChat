@@ -1,0 +1,41 @@
+name: Security review
+description: Request review of a security-sensitive area without reporting an active vulnerability.
+title: "[Security Review]: "
+labels: ["security", "review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for non-sensitive security review requests. If you found a vulnerability, follow SECURITY.md and do not post exploit details publicly.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Review area
+      options:
+        - API key storage
+        - Provider request flow
+        - Browser extension permissions
+        - Content script behavior
+        - PWA/self-hosted deployment
+        - Docker or release workflow
+        - Dependencies
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: Concern or question
+      placeholder: What should be reviewed and why?
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Relevant files or links
+      placeholder: src/store/storage.js, wxt.config.js, ...
+  - type: textarea
+    id: expected
+    attributes:
+      label: Desired outcome
+      placeholder: Documentation update, code review, permission reduction, dependency audit, test coverage, etc.

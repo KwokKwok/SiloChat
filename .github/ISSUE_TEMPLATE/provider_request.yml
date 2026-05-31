@@ -1,0 +1,48 @@
+name: Provider request
+description: Request support or improvements for a model provider.
+title: "[Provider]: "
+labels: ["provider"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for provider compatibility, presets, model lists, and OpenAI-compatible API issues.
+  - type: input
+    id: provider
+    attributes:
+      label: Provider name
+      placeholder: OpenAI, Gemini, Claude, DeepSeek, Zhipu, SiliconFlow, etc.
+    validations:
+      required: true
+  - type: input
+    id: docs
+    attributes:
+      label: Provider documentation URL
+      placeholder: https://...
+  - type: textarea
+    id: request
+    attributes:
+      label: What should Silo support?
+      placeholder: Describe the model, endpoint, parameter, or compatibility behavior.
+    validations:
+      required: true
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: API style
+      options:
+        - OpenAI-compatible
+        - Custom API
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: security
+    attributes:
+      label: Credential or security considerations
+      description: Do not paste real keys. Mention required headers, browser restrictions, CORS behavior, or key-handling requirements.
+      placeholder: This provider requires ...
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context

@@ -32,6 +32,12 @@
 🔧 Model parameter adjustment<br>
 💬 Optimized input experience<br>
 
+## Security and Maintenance
+
+Silo is a pure front-end, multi-model, multi-deployment open-source project. It touches security-sensitive areas such as user API keys, browser storage, custom model providers, browser extension behavior, PWA usage, and Docker/self-hosted deployment. Bug reports, provider compatibility requests, and non-sensitive security review suggestions are welcome through [Issues](https://github.com/KwokKwok/Silo/issues).
+
+If you find a security issue that may expose user keys, browser data, or provider request behavior, please read [SECURITY.md](SECURITY.md) first and do not post keys, tokens, private prompts, or directly exploitable details in public issues. For code contributions, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 <!-- ![dark](./docs/dark.png)
 ![light](./docs/light.png)
 <img src="./docs/mobile.jpg" alt="mobile" width="250"> -->
