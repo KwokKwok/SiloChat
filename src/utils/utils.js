@@ -65,40 +65,66 @@ export function openAiCompatibleChat (baseUrl, sk, modelIdResolver, model, messa
       const reader = stream.getReader(); // 创建一个读取器
       const decoder = new TextDecoder(); // 创建文本解码器
       let info = {};
+      let buffer = '';
+      let isEnded = false;
+      const endOnce = () => {
+        if (isEnded) return;
+        isEnded = true;
+        info.costTime = Date.now() - startTime
+        onEnd(info)
+      }
+      const handleError = (err) => {
+        console.log(err);
+        onError(err);
+      }
+      const handleEventData = (data) => {
+        if (!data || data === '[DONE]') {
+          if (data === '[DONE]') endOnce();
+          return;
+        }
+        const { choices, ...rest } = JSON.parse(data)
+        info = rest
+        const delta = choices?.[0]?.delta;
+        if (!delta) return;
+        if (delta.content) {
+          // 将本次拿到的 content 拼接到 streamingMessage 中
+          onChunk(delta.content);
+        }
+        if (delta.reasoning_content) {
+          onThinking(delta.reasoning_content)
+        }
+      }
+      const handleDecodedData = (decodedData) => {
+        buffer += decodedData;
+        const lines = buffer.split(/\r?\n/);
+        buffer = lines.pop() || '';
+        lines.forEach(line => {
+          const data = line.trim().replace(/^data:\s*/, '');
+          if (!data) return;
+          handleEventData(data);
+        });
+      }
       // 读取流中的数据
       function read () {
         reader.read().then(({ done, value }) => {
           if (!controller.current) return;
           if (done) {
-            info.costTime = Date.now() - startTime
-            onEnd(info)
+            if (buffer.trim()) {
+              const data = buffer.trim().replace(/^data:\s*/, '');
+              handleEventData(data);
+              buffer = '';
+            }
+            endOnce()
             return;
           }
-          const decodedData = decoder.decode(value); // 解码数据
-
-          const deltas = decodedData.split('data: ').filter(item => item.trim() && item.startsWith('{')).map(item => {
-            const { choices, ...rest } = JSON.parse(item)
-            info = rest
-            return choices[0].delta
-          });
-          const content = deltas.map(item => item.content).filter(Boolean).join('');
-          const reasoning_content = deltas.map(item => item.reasoning_content).filter(Boolean).join('');
-          if (content) {
-            // 将本次拿到的 content 拼接到 streamingMessage 中
-            onChunk(content);
-          }
-          if (reasoning_content) {
-            onThinking(reasoning_content)
-          }
+          const decodedData = decoder.decode(value, { stream: true }); // 解码数据
+          handleDecodedData(decodedData);
           read(); // 递归读取下一块数据
-        });
+        }).catch(handleError);
       }
 
       read(); // 开始读取流
-    }).catch(err => {
-      console.log(err);
-      onError(err);
-    })
+    }).catch(err => onError(err))
 }
 
 export async function streamChat (model, messages, controller, onChunk, onEnd, onError, onThinking) {

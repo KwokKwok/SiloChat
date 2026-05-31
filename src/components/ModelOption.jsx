@@ -16,6 +16,9 @@ export default function ModelOption({ option }) {
   const { t } = useTranslation();
   const [userInfo] = useUserInfo();
   const { category } = userInfo;
+  const hasKnownPrice = typeof option.price === 'number';
+  const hasInputOutputPrice =
+    typeof option.priceIn === 'number' && typeof option.priceOut === 'number';
 
   return (
     <div className="flex flex-col">
@@ -63,27 +66,40 @@ export default function ModelOption({ option }) {
             TPM: {fmtNumber(option.levels[category].TPM)}
           </Tag>
         )}
-        {option.price > 0 ? (
+        {!!option.supportsGift && (
           <Tag
             className="ml-2 inline-flex items-center justify-center"
             variant="outline"
             size="small"
-            theme={option.noGift ? 'danger' : 'success'}
+            theme="success"
+            icon={<i className="iconify i-mingcute-gift-card-fill"></i>}
+          >
+            <span className="pl-1">{t('common.gift', 'Gift')}</span>
+          </Tag>
+        )}
+        {hasKnownPrice && option.price > 0 ? (
+          <Tag
+            className="ml-2 inline-flex items-center justify-center"
+            variant="outline"
+            size="small"
+            theme="warning"
             icon={<i className="iconify i-mingcute-currency-dollar-fill"></i>}
           >
             <div className="pl-1">
-              {option.priceIn === option.priceOut ? (
+              {hasInputOutputPrice && option.priceIn === option.priceOut ? (
                 <span>{option.priceIn}</span>
-              ) : (
+              ) : hasInputOutputPrice ? (
                 <>
                   <span>{option.priceIn}</span>
                   <span className="mx-0.5">/</span>
                   <span>{option.priceOut}</span>
                 </>
+              ) : (
+                <span>{option.price}</span>
               )}
             </div>
           </Tag>
-        ) : (
+        ) : hasKnownPrice && option.price === 0 ? (
           <Tag
             className="ml-2 inline-flex items-center justify-center"
             variant="outline"
@@ -92,7 +108,7 @@ export default function ModelOption({ option }) {
           >
             {t('common.free')}
           </Tag>
-        )}
+        ) : null}
 
         {/* {option.isVendorA && (
           <Tag size="small" variant="outline" theme="success" className="ml-2">

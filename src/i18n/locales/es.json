@@ -40,7 +40,8 @@
     "select_models": "Seleccionar modelo",
     "thinking": "Pensamiento...",
     "think_end": "He pensado profundamente",
-    "reset": "Reiniciar"
+    "reset": "Reiniciar",
+    "gift": "Gift"
   },
   "error": {
     "model_not_vlm": "Este modelo no es un modelo de lenguaje visual, por favor use solo indicaciones de texto"

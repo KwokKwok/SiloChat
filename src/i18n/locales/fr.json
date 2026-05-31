@@ -40,7 +40,8 @@
     "select_models": "Sélectionnez le modèle",
     "thinking": "Pensée...",
     "think_end": "Ont pensé profondément",
-    "reset": "Réinitialiser"
+    "reset": "Réinitialiser",
+    "gift": "Gift"
   },
   "error": {
     "model_not_vlm": "Ce modèle n'est pas un modèle de langage visuel, veuillez utiliser uniquement des invites textuelles"

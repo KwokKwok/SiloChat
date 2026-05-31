@@ -40,7 +40,8 @@
     "select_models": "Seleziona modello",
     "thinking": "Pensiero...",
     "think_end": "Ho pensato profondamente",
-    "reset": "Reset"
+    "reset": "Reset",
+    "gift": "Gift"
   },
   "error": {
     "model_not_vlm": "Questo modello non è un modello di linguaggio visivo, usa solo prompt testuali"

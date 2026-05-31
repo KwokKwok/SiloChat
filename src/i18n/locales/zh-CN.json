@@ -40,7 +40,8 @@
     "select_models": "选择模型",
     "thinking": "思考中...",
     "think_end": "已深度思考",
-    "reset": "重置"
+    "reset": "重置",
+    "gift": "赠金"
   },
   "error": {
     "model_not_vlm": "该模型不是视觉语言模型，请仅使用文本提示"

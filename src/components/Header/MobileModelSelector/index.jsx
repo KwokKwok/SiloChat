@@ -48,9 +48,9 @@ const MobileModelSelector = forwardRef((props, ref) => {
       filter: model => model.vision,
     },
     {
-      value: 'free',
-      label: 'Free',
-      filter: model => model.price <= 0,
+      value: 'gift',
+      label: 'Gift',
+      filter: model => model.supportsGift,
     },
   ];
 

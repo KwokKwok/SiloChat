@@ -13,6 +13,8 @@ node_modules
 dist
 dist-ssr
 *.local
+.env.submit
+scripts/chrome-web-store.json
 
 # Editor directories and files
 !.vscode/extensions.json

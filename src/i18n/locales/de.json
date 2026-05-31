@@ -40,7 +40,8 @@
     "select_models": "Modell auswählen",
     "thinking": "Denken...",
     "think_end": "Habe tief nachgedacht",
-    "reset": "Zurücksetzen"
+    "reset": "Zurücksetzen",
+    "gift": "Gift"
   },
   "error": {
     "model_not_vlm": "Dieses Modell ist kein visuelles Sprachmodell, bitte verwenden Sie nur Text-Prompts"

@@ -4,6 +4,7 @@ import { getJsonDataFromLocalStorage, setJsonDataToLocalStorage } from '@src/uti
 import { LOCAL_STORAGE_KEY } from '@src/utils/types';
 import { checkModelLimit, openAiCompatibleChat } from "./utils";
 import chatModelData from '../data/chat-models.json';
+import giftModelIdsRaw from '../data/gift-models.txt?raw';
 
 const _iconCache = {};
 const modules = import.meta.glob('../assets/img/models/*.*', { eager: true });
@@ -20,11 +21,16 @@ const modules = import.meta.glob('../assets/img/models/*.*', { eager: true });
  *   priceOut: number,
  *   price: number,
  *   vision: boolean,
- *   noGift: boolean
+ *   supportsGift: boolean
  * }>}
  */
+const GIFT_MODEL_IDS = new Set(
+  giftModelIdsRaw.split(/\r?\n/).map(item => item.trim()).filter(Boolean)
+);
+
 const SILICON_MODELS = chatModelData.map(({ icon, ...item }) => ({
   ...item,
+  supportsGift: GIFT_MODEL_IDS.has(item.id),
   icon: getModelIcon(item.id, false) || (icon.startsWith('http') ? icon : `https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/${icon}`)
 }));
 
@@ -193,15 +199,15 @@ const IMAGE_MODELS = [
 ];
 
 /**
- * 判断体验密钥是否可用
+ * 判断体验密钥是否可用。
+ * SiliconFlow 的旧赠金只允许部分模型使用，体验密钥按 gift 模型白名单限制。
  */
 export function isLimitedModel (modelId) {
   const IMAGE_LIMITED_MODELS = IMAGE_MODELS.filter(item => item.price > 0).map(item => item.id);
-  const TEXT_LIMITED_MODELS = SILICON_MODELS.filter(item => item.price > 0).map(item => item.id);
+  const TEXT_LIMITED_MODELS = SILICON_MODELS.filter(item => !item.supportsGift).map(item => item.id);
   return IMAGE_LIMITED_MODELS.includes(modelId) || TEXT_LIMITED_MODELS.includes(modelId);
 }
 
 export function getImageModels () {
   return [...IMAGE_MODELS];
 }
-
