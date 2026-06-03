@@ -180,10 +180,40 @@
     "vision": 1
   },
   {
-    "id": "MiniMaxAI/MiniMax-M2.5",
+    "id": "MiniMaxAI/MiniMax-M3",
     "series": "MiniMaxAI",
     "icon": "minimax-color.svg",
-    "size": 229,
+    "size": 230,
+    "levels": [
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      }
+    ],
+    "length": 512,
+    "name": "MiniMax-M3",
+    "price": null,
+    "vision": 1
+  },
+  {
+    "id": "MiniMaxAI/MiniMax-M2.7",
+    "series": "MiniMaxAI",
+    "icon": "minimax-color.svg",
+    "size": 230,
     "levels": [
       {
         "TPM": 100000
@@ -205,7 +235,37 @@
       }
     ],
     "length": 192,
-    "name": "MiniMax-M2.5",
+    "name": "MiniMax-M2.7",
+    "price": null,
+    "vision": 0
+  },
+  {
+    "id": "MiniMaxAI/MiniMax-M2.7-highspeed",
+    "series": "MiniMaxAI",
+    "icon": "minimax-color.svg",
+    "size": 230,
+    "levels": [
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      },
+      {
+        "TPM": 100000
+      }
+    ],
+    "length": 192,
+    "name": "MiniMax-M2.7-highspeed",
     "price": null,
     "vision": 0
   },
@@ -390,10 +450,40 @@
     "vision": 1
   },
   {
-    "id": "Pro/MiniMaxAI/MiniMax-M2.5",
+    "id": "Pro/MiniMaxAI/MiniMax-M3",
     "series": "MiniMaxAI",
     "icon": "minimax-color.svg",
-    "size": 229,
+    "size": 230,
+    "levels": [
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      }
+    ],
+    "length": 512,
+    "name": "MiniMax-M3 (Pro)",
+    "price": null,
+    "vision": 1
+  },
+  {
+    "id": "Pro/MiniMaxAI/MiniMax-M2.7",
+    "series": "MiniMaxAI",
+    "icon": "minimax-color.svg",
+    "size": 230,
     "levels": [
       {
         "TPM": 2000000
@@ -415,7 +505,37 @@
       }
     ],
     "length": 192,
-    "name": "MiniMax-M2.5 (Pro)",
+    "name": "MiniMax-M2.7 (Pro)",
+    "price": null,
+    "vision": 0
+  },
+  {
+    "id": "Pro/MiniMaxAI/MiniMax-M2.7-highspeed",
+    "series": "MiniMaxAI",
+    "icon": "minimax-color.svg",
+    "size": 230,
+    "levels": [
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      },
+      {
+        "TPM": 2000000
+      }
+    ],
+    "length": 192,
+    "name": "MiniMax-M2.7-highspeed (Pro)",
     "price": null,
     "vision": 0
   },
